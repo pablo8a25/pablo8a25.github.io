@@ -14,4 +14,4 @@ Estudiante de Biotecnología en la EIA (Medellín). Hago páginas web, aplicacio
 
 ## Diseño
 
-Blanco y negro, inspirado en el estilo editorial de portafolios de diseñadores (foto a pantalla completa, nombre gigante en movimiento, lista de proyectos con vista previa al pasar el mouse). HTML, CSS y JavaScript, hecho trabajando con IA (Claude).
+Oscuro y con movimiento: una esfera de puntos en 3D dibujada con canvas que gira con su anillo de órbita, un mosaico de tarjetas que aparecen y se desplazan a distinto ritmo al bajar, luz que sigue al mouse y una barra de navegación flotante. HTML, CSS y JavaScript sin librerías, hecho trabajando con IA (Claude). Las animaciones se reducen si el sistema lo pide.
