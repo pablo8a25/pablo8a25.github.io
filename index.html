@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pablo Ortiz Ochoa · IA aplicada y diseño web</title>
+<meta name="description" content="Portafolio de Pablo Ortiz Ochoa: páginas web, automatizaciones y aplicaciones hechas con inteligencia artificial para que los negocios trabajen más rápido.">
+<meta name="theme-color" content="#1c1d20">
+<meta property="og:title" content="Pablo Ortiz Ochoa · IA aplicada y diseño web">
+<meta property="og:description" content="Páginas web, automatizaciones y aplicaciones hechas con inteligencia artificial.">
+<meta property="og:image" content="img/pablo.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%231c1d20'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='26' fill='white' text-anchor='middle'%3EPO%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #1c1d20;
+    --grafito: #494a4d;
+    --niebla: #999d9e;
+    --suave: #6b6e70;
+    --blanco: #ffffff;
+    --claro: #f2f2f2;
+    --linea: rgba(28, 29, 32, .14);
+    --anillo: inset 0 0 0 1px rgba(255, 255, 255, .2);
+    --pildora: 999px;
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); font-weight: 450; letter-spacing: .02em; color: var(--negro); background: var(--blanco); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; letter-spacing: inherit; }
+  .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .envoltura { padding: 0 clamp(20px, 5vw, 80px); }
+  .meta { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--suave); }
+  :focus-visible { outline: 2px solid var(--negro); outline-offset: 3px; }
+
+  /* Píldoras y botones redondos */
+  .pildora {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: var(--pildora);
+    font-size: 14px; box-shadow: inset 0 0 0 1px var(--linea); transition: background .25s, color .25s, box-shadow .25s;
+  }
+  .pildora:hover { background: var(--negro); color: var(--blanco); box-shadow: none; }
+  .oscuro .pildora { box-shadow: var(--anillo); }
+  .oscuro .pildora:hover { background: var(--blanco); color: var(--negro); }
+  .circulo {
+    width: clamp(140px, 14vw, 190px); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
+    background: var(--negro); color: var(--blanco); font-size: 15px; transition: background .3s; will-change: transform;
+  }
+  .circulo:hover { background: var(--grafito); }
+
+  /* ---------- Portada ---------- */
+  .portada { position: relative; height: min(100svh, 1000px); min-height: 620px; background: #999d9e; overflow: hidden; }
+  .portada .foto { position: absolute; left: 50%; bottom: 0; height: 88%; width: auto; max-width: none; transform: translateX(-50%); }
+  .barra { position: absolute; top: 0; left: 0; right: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 30px clamp(20px, 5vw, 80px); font-size: 14px; color: var(--negro); }
+  .barra nav { display: flex; gap: 32px; }
+  .barra a { position: relative; }
+  .barra nav a::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 5px; height: 5px; border-radius: 50%; background: currentColor; transform: translateX(-50%) scale(0); transition: transform .25s; }
+  .barra nav a:hover::after { transform: translateX(-50%) scale(1); }
+  .ubicacion {
+    position: absolute; z-index: 3; left: 0; top: 46%; display: flex; align-items: center; gap: 22px;
+    background: var(--negro); color: var(--blanco); padding: 18px 22px 18px clamp(20px, 5vw, 80px);
+    border-radius: 0 var(--pildora) var(--pildora) 0; font-size: 13px; line-height: 1.25;
+  }
+  .ubicacion .globo { width: 54px; height: 54px; border-radius: 50%; background: var(--grafito); display: grid; place-items: center; }
+  .ubicacion svg { width: 30px; height: 30px; animation: girar 9s linear infinite; }
+  @keyframes girar { to { transform: rotate(360deg); } }
+  .rol { position: absolute; z-index: 3; right: clamp(20px, 5vw, 80px); top: 42%; font-size: clamp(17px, 1.7vw, 24px); line-height: 1.35; color: var(--negro); }
+  .rol svg { width: 22px; height: 22px; margin-bottom: 26px; display: block; }
+  .rol h1 { font: inherit; letter-spacing: inherit; }
+  .nombre { position: absolute; z-index: 2; left: 0; bottom: 3%; width: 100%; overflow: hidden; pointer-events: none; }
+  .nombre .pista { display: flex; width: max-content; animation: correr 26s linear infinite; }
+  .nombre span { font-size: clamp(96px, 15vw, 230px); line-height: 1; letter-spacing: -.01em; white-space: nowrap; color: var(--blanco); padding-right: .25em; }
+  @keyframes correr { to { transform: translateX(-50%); } }
+  .barra a { white-space: nowrap; }
+  @media (max-width: 760px) {
+    .barra { font-size: 13px; padding-top: 22px; }
+    .barra nav { gap: 16px; }
+    .barra .largo { display: none; }
+    .ubicacion { top: auto; bottom: 30%; padding: 12px 16px 12px 20px; }
+    .ubicacion .globo { width: 42px; height: 42px; }
+    .rol { top: 92px; right: auto; left: 20px; font-size: 16px; }
+    .rol svg { margin-bottom: 10px; }
+    .portada .foto { height: 78%; }
+  }
+
+  /* ---------- Presentación ---------- */
+  section { position: relative; }
+  .presentacion { padding: clamp(110px, 14vw, 200px) 0; }
+  .presentacion .envoltura { display: grid; grid-template-columns: 1.6fr 1fr; gap: 6vw; align-items: start; }
+  .presentacion h2 { font-size: clamp(30px, 3.6vw, 52px); font-weight: 450; line-height: 1.2; letter-spacing: .01em; }
+  .presentacion .lado p { color: var(--suave); font-size: 17px; margin-bottom: 40px; }
+  @media (max-width: 860px) { .presentacion .envoltura { grid-template-columns: 1fr; } }
+
+  /* ---------- Proyectos ---------- */
+  .trabajo { padding-bottom: clamp(100px, 12vw, 180px); }
+  .trabajo .meta { margin-bottom: 30px; display: block; }
+  .proyectos { list-style: none; border-top: 1px solid var(--linea); }
+  .proyectos li { border-bottom: 1px solid var(--linea); }
+  .proyecto { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: clamp(36px, 5vw, 64px) 0; transition: padding .4s cubic-bezier(.2,.7,.2,1), opacity .3s; }
+  .proyecto h3 { font-size: clamp(44px, 7vw, 100px); font-weight: 450; line-height: 1; letter-spacing: -.01em; }
+  .proyecto .tipo { font-size: 15px; color: var(--suave); text-align: right; }
+  .proyecto .mini { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .proyectos:hover .proyecto { opacity: .35; }
+    .proyectos .proyecto:hover { opacity: 1; padding-left: 28px; padding-right: 28px; }
+  }
+  .visor {
+    position: fixed; z-index: 50; left: 0; top: 0; width: 380px; aspect-ratio: 16 / 10; pointer-events: none; overflow: hidden;
+    border-radius: 10px; opacity: 0; transform: translate(-50%, -50%) scale(.6); transition: opacity .3s, transform .3s; background: var(--claro);
+  }
+  .visor.activo { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .visor img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .mas-trabajo { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+  @media (hover: none), (max-width: 760px) {
+    .visor { display: none; }
+    .proyecto { grid-template-columns: 1fr; gap: 14px; }
+    .proyecto .mini { display: block; order: -1; border-radius: 10px; overflow: hidden; aspect-ratio: 16 / 10; }
+    .proyecto .mini img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+    .proyecto .tipo { text-align: left; }
+  }
+
+  /* ---------- Servicios ---------- */
+  .servicios { padding: clamp(100px, 12vw, 180px) 0; background: var(--claro); }
+  .servicios h2, .sobre h2 { font-size: clamp(44px, 6vw, 88px); font-weight: 450; line-height: 1.05; letter-spacing: -.01em; margin-bottom: 60px; }
+  .lista-servicios { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 6vw; counter-reset: s; }
+  .lista-servicios li { counter-increment: s; display: grid; grid-template-columns: 54px 1fr; padding: 26px 0; border-top: 1px solid var(--linea); }
+  .lista-servicios li::before { content: counter(s, decimal-leading-zero); font-size: 12px; color: var(--suave); padding-top: 6px; }
+  .lista-servicios b { display: block; font-size: 21px; font-weight: 450; }
+  .lista-servicios p { color: var(--suave); font-size: 15px; }
+  .herramientas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 56px; }
+  .herramientas span { padding: 10px 20px; border-radius: var(--pildora); background: var(--blanco); font-size: 14px; }
+  @media (max-width: 760px) { .lista-servicios { grid-template-columns: 1fr; } }
+
+  /* ---------- Sobre mí ---------- */
+  .sobre { padding: clamp(100px, 12vw, 180px) 0; }
+  .sobre .rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; }
+  .sobre .texto p { font-size: 19px; line-height: 1.55; margin-bottom: 22px; }
+  .sobre .texto p.suave { color: var(--suave); font-size: 16px; }
+  .tarjetas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; }
+  .tarjeta { background: var(--claro); border-radius: 10px; padding: 22px; min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+  .tarjeta.negra { background: var(--negro); color: var(--blanco); }
+  .tarjeta.negra .meta { color: var(--niebla); }
+  .tarjeta b { font-size: 21px; font-weight: 450; line-height: 1.25; }
+  @media (max-width: 860px) { .sobre .rejilla { grid-template-columns: 1fr; } }
+  @media (max-width: 420px) { .tarjetas { grid-template-columns: 1fr; } }
+
+  /* ---------- Contacto (oscuro) ---------- */
+  .oscuro { background: var(--negro); color: var(--blanco); }
+  .contacto { padding: clamp(110px, 13vw, 190px) 0 40px; }
+  .contacto .titulo { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .contacto .avatar { width: clamp(70px, 7vw, 100px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; flex: none; }
+  .contacto .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; transform: scale(1.6); transform-origin: 50% 30%; }
+  .contacto h2 { font-size: clamp(54px, 8vw, 120px); font-weight: 450; line-height: 1; letter-spacing: -.01em; }
+  .contacto .linea { position: relative; margin: clamp(60px, 8vw, 110px) 0; height: 1px; background: rgba(255,255,255,.2); }
+  .contacto .linea .circulo { position: absolute; right: 8vw; top: 50%; transform: translateY(-50%); background: var(--blanco); color: var(--negro); }
+  .contacto .linea .circulo:hover { background: #d9d9d9; }
+  .contacto .pildoras { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pie { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-top: clamp(90px, 10vw, 150px); font-size: 14px; }
+  .pie .meta { color: var(--niebla); display: block; margin-bottom: 6px; }
+  .pie .grupo { display: flex; gap: 40px; flex-wrap: wrap; }
+  @media (max-width: 760px) { .contacto .linea .circulo { right: 0; } }
+
+  /* Aparecer al bajar */
+  [data-revelar] { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+  [data-revelar].visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    [data-revelar] { opacity: 1; transform: none; }
+  }
+  .copiado { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; background: var(--negro); color: var(--blanco); padding: 12px 20px; border-radius: var(--pildora); font-size: 14px; transition: opacity .25s, transform .25s; z-index: 60; box-shadow: var(--anillo); }
+  .copiado.visible { opacity: 1; transform: translate(-50%, 0); }
+</style>
+</head>
+<body>
+
+<header class="portada" id="inicio">
+  <div class="barra">
+    <a href="#inicio">© <span class="largo">Hecho por </span>Pablo</a>
+    <nav aria-label="Principal">
+      <a href="#trabajo">Proyectos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+
+  <img class="foto" src="img/pablo.jpg" width="1100" height="1464" alt="Retrato de Pablo Ortiz Ochoa en blanco y negro, con polo negro" fetchpriority="high">
+
+  <div class="ubicacion">
+    <span>Desde<br>Medellín,<br>Colombia</span>
+    <span class="globo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c2.8 3 4 6.4 4 10s-1.2 7-4 10c-2.8-3-4-6.4-4-10s1.2-7 4-10z"/></svg>
+    </span>
+  </div>
+
+  <div class="rol">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M5 5l14 14M19 8v11H8"/></svg>
+    <h1><span class="solo-lector">Pablo Ortiz Ochoa · </span>Estudiante de Biotecnología<br>IA aplicada y diseño web</h1>
+  </div>
+
+  <div class="nombre" aria-hidden="true">
+    <div class="pista"><span>Pablo Ortiz Ochoa —</span><span>Pablo Ortiz Ochoa —</span></div>
+  </div>
+</header>
+
+<main>
+  <section class="presentacion">
+    <div class="envoltura">
+      <h2 data-revelar>Ayudo a negocios a trabajar más rápido y más fácil con páginas web, aplicaciones y automatizaciones hechas con inteligencia artificial.</h2>
+      <div class="lado" data-revelar>
+        <p>Estudio Biotecnología en la EIA y aprendo programación con el curso CS50 de Harvard. Uso la IA para pasar de una idea a algo que funciona en días, no en meses.</p>
+        <a class="circulo magnetico" href="#sobre-mi">Sobre mí</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="trabajo" id="trabajo">
+    <div class="envoltura">
+      <span class="meta">Proyectos</span>
+      <ul class="proyectos" id="proyectos">
+        <li>
+          <a class="proyecto" href="https://pablo8a25.github.io/rutau/" target="_blank" rel="noopener" data-imagen="img/rutau.jpg">
+            <span class="mini"><img src="img/rutau.jpg" width="1200" height="750" alt="Captura de RutaU: mapa de Medellín con la ruta del bus y la tarjeta de tiempos" loading="lazy"></span>
+            <h3>RutaU</h3>
+            <span class="tipo">App web · Buses de la EIA en el mapa</span>
+          </a>
+        </li>
+        <li>
+          <a class="proyecto" href="https://docs.google.com/spreadsheets/d/1-7lxzB8d95xydnmRQrtFxXXZDU2G1w5AnxPOcI9Q9h4/edit?usp=sharing" target="_blank" rel="noopener" data-imagen="img/cafeteria.jpg">
+            <span class="mini"><img src="img/cafeteria.jpg" width="1200" height="750" alt="Captura del panel de la cafetería en Google Sheets con ventas, ganancia e inventario" loading="lazy"></span>
+            <h3>Café Montaña</h3>
+            <span class="tipo">Automatización · Google Sheets y Apps Script</span>
+          </a>
+        </li>
+        <li>
+          <a class="proyecto" href="https://pablo8a25.github.io/redisenio-dona-rosa/" target="_blank" rel="noopener" data-imagen="img/dona-rosa.jpg">
+            <span class="mini"><img src="img/dona-rosa.jpg" width="1200" height="750" alt="Captura del rediseño de Doña Rosa: título rojo y foto de comida típica" loading="lazy"></span>
+            <h3>Doña Rosa</h3>
+            <span class="tipo">Rediseño web · Concepto no oficial</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mas-trabajo">
+        <a class="pildora" href="https://pablo8a25.github.io/redisenio-dona-rosa/caso.html" target="_blank" rel="noopener">Caso de estudio de Doña Rosa ↗</a>
+        <a class="pildora" href="https://github.com/pablo8a25" target="_blank" rel="noopener">Ver el código en GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="servicios">
+    <div class="envoltura">
+      <span class="meta">Servicios</span>
+      <h2 data-revelar>Lo que puedo hacer<br>por tu negocio</h2>
+      <ul class="lista-servicios">
+        <li><div><b>Diseño de páginas web</b><p>Sitios claros, rápidos y pensados primero para el celular.</p></div></li>
+        <li><div><b>Mejora de sitios existentes</b><p>Ordeno el contenido y corrijo lo que hace lenta o confusa una página.</p></div></li>
+        <li><div><b>Automatización de tareas</b><p>Lo que hoy se hace a mano todos los días, que lo haga el computador.</p></div></li>
+        <li><div><b>Optimización de procesos</b><p>Menos pasos, menos errores y más tiempo para lo importante.</p></div></li>
+        <li><div><b>IA en empresas</b><p>Asistentes y flujos de trabajo con inteligencia artificial.</p></div></li>
+        <li><div><b>Datos en Excel y Google Sheets</b><p>Paneles que se actualizan solos con ventas, inventario o gastos.</p></div></li>
+        <li><div><b>Atención al cliente con chatbots</b><p>Respuestas rápidas a las preguntas de siempre.</p></div></li>
+        <li><div><b>Contenido para redes y blogs</b><p>Textos e ideas con apoyo de IA, en el tono de tu marca.</p></div></li>
+        <li><div><b>Documentos y presentaciones</b><p>Informes y presentaciones que se ven profesionales.</p></div></li>
+        <li><div><b>Traducción español–inglés</b><p>Con inglés certificado nivel B2.</p></div></li>
+      </ul>
+      <div class="herramientas" aria-label="Herramientas">
+        <span>Claude</span><span>Claude Code</span><span>HTML y CSS</span><span>Python (básico)</span><span>Google Sheets</span><span>GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sobre" id="sobre-mi">
+    <div class="envoltura">
+      <span class="meta">Sobre mí</span>
+      <h2 data-revelar>Hola, soy Pablo</h2>
+      <div class="rejilla">
+        <div class="texto" data-revelar>
+          <p>Soy de Medellín y estudio Biotecnología en la Escuela de Ingeniería de Antioquia. Me gusta entender cómo funcionan las cosas y buscar la forma de hacerlas más simples.</p>
+          <p>Descubrí que con inteligencia artificial puedo construir herramientas reales: una app para que mis compañeros sepan dónde va el bus de la universidad, un sistema de ventas e inventario para una cafetería y el rediseño de la página de un restaurante.</p>
+          <p class="suave">Antes de la universidad apoyé los entrenamientos de niños en un club de fútbol durante mi servicio social y participé cinco años en el Modelo ONU de mi colegio, en debate y en logística.</p>
+        </div>
+        <div class="tarjetas" data-revelar>
+          <div class="tarjeta"><span class="meta">Universidad</span><b>Biotecnología · EIA<br>2026 – Actualidad</b></div>
+          <div class="tarjeta"><span class="meta">Colegio</span><b>Colegio Canadiense<br>Graduado en 2026</b></div>
+          <div class="tarjeta"><span class="meta">Inglés</span><b>Cambridge English<br>Nivel B2</b></div>
+          <div class="tarjeta"><span class="meta">Programación</span><b>Python · CS50P<br>Harvard (en curso)</b></div>
+          <div class="tarjeta negra" style="grid-column: 1 / -1"><span class="meta">Disponibilidad</span><b>Trabajo remoto · Tiempo completo en vacaciones</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="oscuro contacto" id="contacto">
+  <div class="envoltura">
+    <div class="titulo" data-revelar>
+      <span class="avatar"><img src="img/pablo.jpg" width="1100" height="1464" alt="" loading="lazy"></span>
+      <h2>Trabajemos<br>juntos</h2>
+    </div>
+    <div class="linea">
+      <a class="circulo magnetico" href="mailto:pablo8abc@gmail.com">Escríbeme</a>
+    </div>
+    <div class="pildoras">
+      <button class="pildora" id="copiarCorreo" data-correo="pablo8abc@gmail.com">pablo8abc@gmail.com</button>
+      <a class="pildora" href="https://github.com/pablo8a25" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="pie">
+      <div class="grupo">
+        <div><span class="meta">Versión</span>2026</div>
+        <div><span class="meta">Hora local</span><span id="hora">--:--</span> · Medellín</div>
+      </div>
+      <div><span class="meta">Hecho con</span>HTML, CSS y JavaScript, trabajando con IA (Claude)</div>
+    </div>
+  </div>
+</footer>
+
+<div class="visor" id="visor" aria-hidden="true"><img id="visorImg" src="img/rutau.jpg" alt=""></div>
+<div class="copiado" id="copiado" role="status">Correo copiado</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fino = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // Hora local de Medellín
+  function hora() {
+    $('hora').textContent = new Date().toLocaleTimeString('es-CO', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
+  }
+  hora(); setInterval(hora, 30000);
+
+  // Aparecer al bajar
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('[data-revelar]').forEach(el => obs.observe(el));
+
+  // Imagen que sigue al cursor sobre la lista de proyectos (solo con mouse)
+  if (fino) {
+    const visor = $('visor'), img = $('visorImg');
+    let x = 0, y = 0, vx = 0, vy = 0, activo = false;
+    document.querySelectorAll('.proyecto').forEach(p => {
+      p.addEventListener('mouseenter', () => { img.src = p.dataset.imagen; visor.classList.add('activo'); activo = true; });
+      p.addEventListener('mouseleave', () => { visor.classList.remove('activo'); activo = false; });
+    });
+    addEventListener('mousemove', e => { x = e.clientX; y = e.clientY; });
+    (function seguir() {
+      vx += (x - vx) * (quieto ? 1 : .14); vy += (y - vy) * (quieto ? 1 : .14);
+      visor.style.left = vx + 'px'; visor.style.top = vy + 'px';
+      requestAnimationFrame(seguir);
+    })();
+  }
+
+  // Botones redondos "magnéticos"
+  if (fino && !quieto) {
+    document.querySelectorAll('.magnetico').forEach(b => {
+      const base = getComputedStyle(b).transform === 'none' ? '' : getComputedStyle(b).transform;
+      b.addEventListener('mousemove', e => {
+        const r = b.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) * .3, dy = (e.clientY - r.top - r.height / 2) * .3;
+        b.style.transform = `${base} translate(${dx}px, ${dy}px)`;
+      });
+      b.addEventListener('mouseleave', () => { b.style.transform = base; });
+    });
+  }
+
+  // Copiar el correo
+  $('copiarCorreo').addEventListener('click', async e => {
+    const correo = e.currentTarget.dataset.correo;
+    try { await navigator.clipboard.writeText(correo); $('copiado').textContent = 'Correo copiado'; }
+    catch { location.href = 'mailto:' + correo; return; }
+    $('copiado').classList.add('visible');
+    setTimeout(() => $('copiado').classList.remove('visible'), 2200);
+  });
+</script>
+</body>
+</html>
