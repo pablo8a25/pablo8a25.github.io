@@ -12,7 +12,7 @@ Estudiante de Ingeniería Biotecnológica en la EIA (Medellín). Hago páginas w
 |---|---|---|
 | RutaU | App web para seguir los buses de la EIA en el mapa | [Ver](https://pablo8a25.github.io/rutau/) · [Código](https://github.com/pablo8a25/rutau) |
 | Café Montaña | Ventas, inventario y cierre de caja automáticos en Google Sheets | [Ver hoja](https://docs.google.com/spreadsheets/d/1-7lxzB8d95xydnmRQrtFxXXZDU2G1w5AnxPOcI9Q9h4/edit?usp=sharing) |
-| Doña Rosa | Concepto de rediseño web (no oficial) | [Ver](https://pablo8a25.github.io/redisenio-dona-rosa/) · [Caso](https://pablo8a25.github.io/redisenio-dona-rosa/caso.html) |
+| Doña Rosa | Concepto de rediseño web (no oficial) con un asistente de IA (Gemini) | [Ver](https://pablo8a25.github.io/redisenio-dona-rosa/) · [Caso](https://pablo8a25.github.io/redisenio-dona-rosa/caso.html) |
 | Litotriptor HM3 | Simulador del reflector elipsoidal con onda de choque animada (Python + web) | [Ver](https://pablo8a25.github.io/simulador-litotriptor/) · [Código](https://github.com/pablo8a25/simulador-litotriptor) |
 
 ## Diseño
