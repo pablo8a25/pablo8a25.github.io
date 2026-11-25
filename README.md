@@ -14,4 +14,4 @@ Estudiante de Biotecnología en la EIA (Medellín). Hago páginas web, aplicacio
 
 ## Diseño
 
-Oscuro y con movimiento: una esfera de puntos en 3D dibujada con canvas que gira con su anillo de órbita, un mosaico de tarjetas que aparecen y se desplazan a distinto ritmo al bajar, luz que sigue al mouse y una barra de navegación flotante. HTML, CSS y JavaScript sin librerías, hecho trabajando con IA (Claude). Las animaciones se reducen si el sistema lo pide.
+Negro y azul oscuro, con un azul eléctrico de acento. Título gigante con etiquetas inclinadas, foto recortada en duotono azul, lazos que se dibujan solos, cinta curva con texto que corre, párrafo que se pinta palabra por palabra al bajar, servicios sobre una línea que se traza con el scroll y tarjetas apiladas con cifras. HTML, CSS y JavaScript con GSAP, ScrollTrigger y Lenis; hecho trabajando con IA (Claude). Si el sistema pide menos movimiento, todo se muestra quieto.
