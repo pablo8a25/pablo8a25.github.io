@@ -1,6 +1,8 @@
 # Pablo Ortiz Ochoa · Portafolio
 
-Página personal: **https://pablo8a25.github.io**
+Página personal: **https://pablo8a25.github.io** · en inglés: **https://pablo8a25.github.io/en/**
+
+La versión en inglés (`en/index.html`) se genera a partir de la de español con `python herramientas/traducir_en.py`, que tiene cada texto con su traducción.
 
 Estudiante de Ingeniería Biotecnológica en la EIA (Medellín). Hago páginas web, aplicaciones y automatizaciones con inteligencia artificial.
 
