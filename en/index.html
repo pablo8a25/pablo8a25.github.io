@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- La página vive en Vercel: si se abre desde la dirección vieja de GitHub Pages, salta a la nueva -->
+<script>if (location.hostname.endsWith('github.io')) location.replace('https://pablo-ortiz-ochoa.vercel.app' + location.pathname + location.search + location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pablo Ortiz Ochoa · Applied AI &amp; web design</title>
 <meta name="description" content="Portfolio of Pablo Ortiz Ochoa: websites, automations and AI-powered tools that help businesses work better.">
@@ -9,8 +11,8 @@
 <meta property="og:title" content="Pablo Ortiz Ochoa · Applied AI &amp; web design">
 <meta property="og:description" content="Websites, automations and AI-powered tools.">
 <meta property="og:image" content="https://pablo8a25.github.io/img/pablo.jpg">
-<link rel="alternate" hreflang="es" href="https://pablo8a25.github.io/">
-<link rel="alternate" hreflang="en" href="https://pablo8a25.github.io/en/">
+<link rel="alternate" hreflang="es" href="https://pablo-ortiz-ochoa.vercel.app/">
+<link rel="alternate" hreflang="en" href="https://pablo-ortiz-ochoa.vercel.app/en/">
 <link rel="icon" type="image/svg+xml" href="../img/logo.svg">
 <link rel="preload" as="image" href="../img/portada.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,10 +195,14 @@
     .frase .p { animation: encender linear both; animation-timeline: view(); animation-range: entry 75% cover 50%; }
     @keyframes encender { to { color: var(--encendido, var(--texto)); } }
   }
-  @supports not (animation-timeline: view()) { .frase .p { color: var(--texto); } .frase .p.coral { color: var(--coral); } }
+  /* Navegadores sin animaciones por scroll (p. ej. Safari en iPhone): las hace el JavaScript con la clase .js-scroll */
+  @supports not (animation-timeline: view()) { html:not(.js-scroll) .frase .p { color: var(--texto); } html:not(.js-scroll) .frase .p.coral { color: var(--coral); } }
+  .js-scroll .frase .p { transition: color .5s; }
+  .js-scroll .frase .p.on { color: var(--encendido, var(--texto)); }
+  .js-scroll .baldosa, .js-scroll .portada .foto { will-change: transform; }
   .nota-frase { margin-top: 26px; font-family: var(--mono); font-size: 13px; color: var(--tenue); text-transform: uppercase; letter-spacing: .06em; }
   .sobre .acciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 44px; }
-  @media (max-width: 860px) { .sobre .rejilla { grid-template-columns: 1fr; } .baldosa { display: none; } }
+  @media (max-width: 860px) { .sobre .rejilla { grid-template-columns: 1fr; } .baldosa { max-width: 240px; margin-top: 34px; } }
 
   /* ---------- Cinta de datos ---------- */
   .cinta { overflow: hidden; border-block: 1px solid var(--linea); padding: 22px 0; }
@@ -240,12 +246,17 @@
   .titulo-grande { font-size: clamp(64px, 12vw, 200px); font-weight: 600; letter-spacing: -.05em; line-height: .86; text-transform: uppercase; }
   .titulo-grande .punto { color: var(--coral); }
   .pila { margin-top: clamp(50px, 7vw, 100px); }
-  .tarjeta { --p: 0; position: sticky; top: 6vh; min-height: 86vh; margin-bottom: 7vh; padding: clamp(24px, 3.4vw, 50px); border-radius: 22px; overflow: hidden;
-    background: var(--fondo); color: var(--tinta); display: flex; flex-direction: column; gap: clamp(26px, 3vw, 44px);
-    transform-origin: 50% 0; transform: scale(calc(1 - var(--p) * .07)) rotate(calc(var(--p) * -1.4deg)); box-shadow: 0 -20px 60px rgba(0,0,0,.35); }
+  .tarjeta { --p: 0; position: relative; margin-bottom: 7vh; padding: clamp(22px, 3.4vw, 50px); border-radius: 22px; overflow: hidden;
+    background: var(--fondo); color: var(--tinta); display: flex; flex-direction: column; gap: clamp(22px, 3vw, 44px);
+    transform-origin: 50% 0; transform: scale(calc(1 - var(--p) * .07)) rotate(calc(var(--p) * -1.4deg)); box-shadow: 0 -20px 60px rgba(0,0,0,.35);
+    transition: translate 1s var(--curva); }
   .tarjeta::after { content: ""; position: absolute; inset: 0; background: #000; opacity: calc(var(--p) * .55); pointer-events: none; }
   .tarjeta:last-child { margin-bottom: 0; }
-  .tarjeta[data-ver] { opacity: 1; } /* opacas siempre: se tapan unas a otras */
+  .tarjeta[data-ver] { opacity: 1; transform: scale(calc(1 - var(--p) * .07)) rotate(calc(var(--p) * -1.4deg)); } /* opacas siempre: se tapan unas a otras */
+  .tarjeta[data-ver]:not(.visible) { translate: 0 70px; }
+  /* Se apilan solo si cada tarjeta cabe en la pantalla (lo mide el JavaScript), también en celular */
+  .pila.apilar .tarjeta { position: sticky; top: var(--tope, 6vh); }
+  @media (min-width: 861px) { .tarjeta { min-height: 86vh; } }
   .t1 { --fondo: #2448d8; --tinta: #f2f4ff; --acento: #ffd8bf; }
   .t2 { --fondo: #1d1411; --tinta: #ffe3d1; --acento: #ff7a4d; }
   .t3 { --fondo: #ff7a4d; --tinta: #170b08; --acento: #170b08; }
@@ -272,11 +283,14 @@
   .tarjeta .marco::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s;
     background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,.2), transparent 60%); }
   .tarjeta .marco:hover::after { opacity: 1; }
-  @media (max-width: 860px), (max-height: 680px) {
-    .tarjeta { position: relative; top: 0; min-height: 0; transform: none; margin-bottom: 18px; }
-    .tarjeta::after { display: none; }
-    .tarjeta .cuerpo { grid-template-columns: 1fr; }
+  @media (max-width: 860px) {
+    .tarjeta { margin-bottom: 4vh; }
+    .tarjeta .cuerpo { grid-template-columns: 1fr; gap: 20px; }
     .tarjeta .marco { order: -1; }
+    .tarjeta .resumen { font-size: 14.5px; }
+    .ficha { margin-top: 16px; font-size: 13px; grid-template-columns: 92px 1fr; }
+    .ficha dt, .ficha dd { padding: 7px 0; }
+    .enlaces { margin-top: 16px; }
   }
 
   /* ---------- Lema en curva ---------- */
@@ -519,9 +533,9 @@
                 <dt>Key fact</dt><dd>7 routes traced along real streets</dd>
                 <dt>Year</dt><dd>2026</dd>
               </dl>
-              <div class="enlaces"><a class="boton lleno chico" href="https://pablo8a25.github.io/rutau/" target="_blank" rel="noopener">View project <span class="flecha" aria-hidden="true">↗</span></a><a class="boton borde chico" href="https://github.com/pablo8a25/rutau" target="_blank" rel="noopener">Code</a></div>
+              <div class="enlaces"><a class="boton lleno chico" href="https://rutau.vercel.app/" target="_blank" rel="noopener">View project <span class="flecha" aria-hidden="true">↗</span></a><a class="boton borde chico" href="https://github.com/pablo8a25/rutau" target="_blank" rel="noopener">Code</a></div>
             </div>
-            <a class="marco" href="https://pablo8a25.github.io/rutau/" target="_blank" rel="noopener" aria-label="View RutaU"><img src="../img/rutau.jpg" width="1200" height="750" alt="RutaU screenshot: map of Medellín with the bus route and the arrival-time card" loading="lazy"></a>
+            <a class="marco" href="https://rutau.vercel.app/" target="_blank" rel="noopener" aria-label="View RutaU"><img src="../img/rutau.jpg" width="1200" height="750" alt="RutaU screenshot: map of Medellín with the bus route and the arrival-time card" loading="lazy"></a>
           </div>
         </article>
 
@@ -555,9 +569,9 @@
                 <dt>Key fact</dt><dd>From about 250 files to 15 per visit</dd>
                 <dt>Year</dt><dd>2026</dd>
               </dl>
-              <div class="enlaces"><a class="boton lleno chico" href="https://pablo8a25.github.io/redisenio-dona-rosa/" target="_blank" rel="noopener">View project <span class="flecha" aria-hidden="true">↗</span></a><a class="boton borde chico" href="https://pablo8a25.github.io/redisenio-dona-rosa/caso.html" target="_blank" rel="noopener">Before and after</a></div>
+              <div class="enlaces"><a class="boton lleno chico" href="https://redisenio-dona-rosa.vercel.app/" target="_blank" rel="noopener">View project <span class="flecha" aria-hidden="true">↗</span></a><a class="boton borde chico" href="https://redisenio-dona-rosa.vercel.app/caso.html" target="_blank" rel="noopener">Before and after</a></div>
             </div>
-            <a class="marco" href="https://pablo8a25.github.io/redisenio-dona-rosa/" target="_blank" rel="noopener" aria-label="View the Doña Rosa redesign"><img src="../img/dona-rosa.jpg" width="1200" height="750" alt="Doña Rosa redesign screenshot: red headline and a photo of Colombian food" loading="lazy"></a>
+            <a class="marco" href="https://redisenio-dona-rosa.vercel.app/" target="_blank" rel="noopener" aria-label="View the Doña Rosa redesign"><img src="../img/dona-rosa.jpg" width="1200" height="750" alt="Doña Rosa redesign screenshot: red headline and a photo of Colombian food" loading="lazy"></a>
           </div>
         </article>
 
@@ -573,9 +587,9 @@
                 <dt>Key fact</dt><dd>PF₁ + PF₂ = 2a: every ray arrives at once</dd>
                 <dt>Year</dt><dd>2026</dd>
               </dl>
-              <div class="enlaces"><a class="boton lleno chico" href="https://pablo8a25.github.io/simulador-litotriptor/" target="_blank" rel="noopener">View project <span class="flecha" aria-hidden="true">↗</span></a><a class="boton borde chico" href="https://github.com/pablo8a25/simulador-litotriptor" target="_blank" rel="noopener">Code</a></div>
+              <div class="enlaces"><a class="boton lleno chico" href="https://simulador-litotriptor.vercel.app/" target="_blank" rel="noopener">View project <span class="flecha" aria-hidden="true">↗</span></a><a class="boton borde chico" href="https://github.com/pablo8a25/simulador-litotriptor" target="_blank" rel="noopener">Code</a></div>
             </div>
-            <a class="marco" href="https://pablo8a25.github.io/simulador-litotriptor/" target="_blank" rel="noopener" aria-label="View the lithotripter simulator"><img src="../img/litotriptor.jpg" width="1200" height="750" alt="Lithotripter simulator screenshot: ellipse with rays leaving the electrode and converging on the kidney stone" loading="lazy"></a>
+            <a class="marco" href="https://simulador-litotriptor.vercel.app/" target="_blank" rel="noopener" aria-label="View the lithotripter simulator"><img src="../img/litotriptor.jpg" width="1200" height="750" alt="Lithotripter simulator screenshot: ellipse with rays leaving the electrode and converging on the kidney stone" loading="lazy"></a>
           </div>
         </article>
       </div>
@@ -744,17 +758,50 @@
   };
 
   // Tarjetas de proyectos que se apilan: la de abajo se encoge y se inclina cuando llega la siguiente
-  const tarjetas = [...document.querySelectorAll('.tarjeta')];
-  const apilable = matchMedia('(min-width: 861px) and (min-height: 681px)');
-  if (!quieto) alBajar(document.querySelector('.pila'), () => {
-    if (!apilable.matches) return tarjetas.forEach(t => t.style.setProperty('--p', 0));
-    const alto = innerHeight, arriba = alto * .06;
+  const tarjetas = [...document.querySelectorAll('.tarjeta')], pila = document.querySelector('.pila');
+  let arriba = 0;
+  // Solo se apilan si cada tarjeta cabe completa en la pantalla (si no, no se podría leer la parte de abajo)
+  const medirPila = () => {
+    arriba = innerWidth > 860 ? innerHeight * .06 : 12;
+    pila.style.setProperty('--tope', arriba + 'px');
+    const cabe = !quieto && tarjetas.every(t => t.offsetHeight <= innerHeight - arriba - 8);
+    pila.classList.toggle('apilar', cabe);
+    if (!cabe) tarjetas.forEach(t => t.style.setProperty('--p', 0));
+  };
+  medirPila(); addEventListener('resize', medirPila); addEventListener('load', medirPila);
+  if (!quieto) alBajar(pila, () => {
+    if (!pila.classList.contains('apilar')) return;
+    const alto = innerHeight;
     for (let i = 0; i < tarjetas.length - 1; i++) {
       const tope = tarjetas[i + 1].getBoundingClientRect().top;
       const p = Math.min(1, Math.max(0, (alto - tope) / (alto - arriba)));
       tarjetas[i].style.setProperty('--p', p.toFixed(3));
     }
   });
+
+  // Si el navegador no tiene animaciones por scroll en CSS (Safari en iPhone), las mismas animaciones con JavaScript
+  if (!quieto && !(window.CSS && CSS.supports('animation-timeline: view()'))) {
+    document.documentElement.classList.add('js-scroll');
+    const limitar = v => Math.min(1, Math.max(0, v));
+    const portada = document.querySelector('.portada'), foto = portada.querySelector('.foto');
+    const baldosa = document.querySelector('.baldosa'), progreso = document.querySelector('.progreso');
+    const palabras = [...frase.querySelectorAll('.p')];
+    let pendiente = false;
+    const paso = () => {
+      pendiente = false;
+      const alto = innerHeight, y = scrollY;
+      progreso.style.transform = `scaleX(${limitar(y / (document.documentElement.scrollHeight - alto)).toFixed(4)})`;
+      const k = limitar(y / portada.offsetHeight);
+      if (k < 1) foto.style.transform = `translateY(${(22 * k).toFixed(2)}%) scale(${(1 + .08 * k).toFixed(4)})`;
+      const r = frase.getBoundingClientRect(), encendidas = Math.round(limitar((alto * .85 - r.top) / (r.height + alto * .35)) * palabras.length);
+      palabras.forEach((w, i) => w.classList.toggle('on', i < encendidas));
+      const b = baldosa.getBoundingClientRect(), q = limitar((alto - b.top) / (alto * .45 + b.height * .45));
+      baldosa.style.transform = `scale(${(.55 + .45 * q).toFixed(4)})`;
+      baldosa.style.borderRadius = `${(60 - 42 * q).toFixed(1)}px`;
+    };
+    const pedir = () => { if (!pendiente) { pendiente = true; requestAnimationFrame(paso); } };
+    addEventListener('scroll', pedir, { passive: true }); addEventListener('resize', pedir); paso();
+  }
 
   // Lema en curva: el texto corre sobre el arco al bajar
   const curva = $('curva'), textoCurva = $('textoCurva'), lema = document.querySelector('.lema');
