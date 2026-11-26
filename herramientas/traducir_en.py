@@ -137,7 +137,7 @@ pares = [
     ('<section class="lema" aria-label="Medir, probar, construir, publicar">', '<section class="lema" aria-label="Measure, test, build, launch">', 1),
     ('<span>{ Método</span>', '<span>{ Method</span>', 1),
     ('<span>Método }</span>', '<span>Method }</span>', 1),
-    ('Medir · Probar · Construir · <tspan class="c">Publicar</tspan> ·', 'Measure · Test · Build · <tspan class="c">Launch</tspan> ·', 3),
+    ('Medir · Probar · Construir · <tspan class="c">Publicar</tspan> ·', 'Measure · Test · Build · <tspan class="c">Launch</tspan> ·', 4),
 
     # Perfil
     ('<span class="rotulo">[ Perfil ]</span>', '<span class="rotulo">[ Profile ]</span>', 1),
