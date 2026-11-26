@@ -17,4 +17,13 @@ Estudiante de Ingeniería Biotecnológica en la EIA (Medellín). Hago páginas w
 
 ## Diseño
 
-Negro y azul oscuro, con un azul eléctrico de acento. Título gigante con etiquetas inclinadas, foto recortada en duotono azul, lazos que se dibujan solos, cinta curva con texto que corre, párrafo que se pinta palabra por palabra al bajar, servicios sobre una línea que se traza con el scroll y tarjetas apiladas con cifras. HTML, CSS y JavaScript con GSAP, ScrollTrigger y Lenis; hecho trabajando con IA (Claude). Si el sistema pide menos movimiento, todo se muestra quieto.
+Del atardecer a la noche: la portada es cálida (durazno y coral) y el resto de la página es azul noche con acentos en coral. Inspirado en el portafolio de NBNZIA, con identidad propia:
+
+- **Entrada:** "Pablo ▢ Ortiz" con una ventana que se abre hasta convertirse en la portada.
+- **Portada:** retrato a contraluz y título que invierte sus colores según lo que tiene detrás (`mix-blend-mode: difference`).
+- **Logo:** una P cuyo círculo es un sol coral cruzado por una onda en movimiento (ADN y señal). Está en `img/logo.svg`.
+- **Secciones:** frase que se ilumina al bajar, cinta de datos, servicios desplegables, proyectos en tarjetas que se apilan, texto en curva que avanza con el scroll y perfil en dos lados (biotecnología y tecnología) unidos por una hélice de ADN.
+
+Letra Inter Tight con etiquetas en JetBrains Mono. Sin librerías: solo HTML, CSS y un poco de JavaScript, para que cargue rápido. Si el sistema pide menos movimiento, todo se muestra quieto.
+
+Los retratos se generaron con IA (Higgsfield) a partir de fotos reales y se colorearon con un mapa de degradado propio. La página se hizo trabajando con IA (Claude).
