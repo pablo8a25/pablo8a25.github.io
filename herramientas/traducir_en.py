@@ -46,8 +46,8 @@ pares = [
     # Portada
     ('alt="Retrato de Pablo Ortiz Ochoa a contraluz, con el cielo del atardecer detrás"', 'alt="Backlit portrait of Pablo Ortiz Ochoa against a sunset sky"', 1),
     ('aria-label="Biotecnología e inteligencia artificial"', 'aria-label="Biotechnology and artificial intelligence"', 1),
-    ('data-letras>Biotecnología</span>', 'data-letras>Biotech</span>', 1),
-    ('data-letras>+ IA</span>', 'data-letras>+ AI</span>', 1),
+    ('data-letras>Biotecnología</span>', 'data-letras>Biotechnology</span>', 1),
+    ('data-letras>e IA</span>', 'data-letras>and AI</span>', 1),
     ('<p class="intro"><b>Hola, soy Pablo.</b> Estudio Ingeniería Biotecnológica y uso la inteligencia artificial para crear herramientas para la salud, el ambiente y el laboratorio.</p>',
      '<p class="intro"><b>Hi, I’m Pablo.</b> I study Biotechnology Engineering and use artificial intelligence to build tools for health, the environment and the lab.</p>', 1),
     ('<div><b>EIA</b><span>Ingeniería Biotecnológica</span></div>', '<div><b>EIA</b><span>Biotechnology Engineering</span></div>', 1),
@@ -66,8 +66,8 @@ pares = [
 
     # Cinta
     ('<div class="cinta" aria-label="Datos rápidos">', '<div class="cinta" aria-label="Quick facts">', 1),
-    ('<li>Biotecnología + IA</li><li>Ingeniería Biotecnológica · EIA</li><li>Python · CS50P de Harvard</li><li>Inglés C1 · fluido</li><li>Medellín, Colombia</li>',
-     '<li>Biotech + AI</li><li>Biotechnology Engineering · EIA</li><li>Python · Harvard’s CS50P</li><li>Fluent English · C1</li><li>Medellín, Colombia</li>', 2),
+    ('<li>Biotecnología e IA</li><li>Ingeniería Biotecnológica · EIA</li><li>Python · CS50P de Harvard</li><li>Inglés C1 · fluido</li><li>Medellín, Colombia</li>',
+     '<li>Biotechnology and AI</li><li>Biotechnology Engineering · EIA</li><li>Python · Harvard’s CS50P</li><li>Fluent English · C1</li><li>Medellín, Colombia</li>', 2),
 
     # Áreas
     ('<span class="rotulo">[ Áreas ]</span>', '<span class="rotulo">[ Areas ]</span>', 1),
