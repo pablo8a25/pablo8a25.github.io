@@ -118,6 +118,7 @@
   .barra .idioma > * { padding: 6px 7px; opacity: .55; } .barra .idioma [aria-current] { opacity: 1; }
   .barra .idioma a:hover { opacity: 1; }
   @media (max-width: 860px) { .barra { grid-template-columns: 1fr auto; } .barra nav { display: none; } }
+  @media (max-width: 400px) { .barra .idioma { display: none; } } /* en celulares angostos el idioma queda en el menú de abajo */
 
   /* Botones con flecha que cambia al pasar el mouse */
   .boton { position: relative; display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 20px; border-radius: 999px; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; isolation: isolate;
@@ -169,7 +170,15 @@
   .vivo::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; margin-right: 9px; vertical-align: 1px; box-shadow: 0 0 0 4px rgba(74,222,128,.16); animation: latido 2.4s ease-in-out infinite; }
   @keyframes latido { 50% { box-shadow: 0 0 0 7px rgba(74,222,128,0); } }
   @media (max-width: 960px) { .pie-portada { grid-template-columns: 1fr; gap: 18px; } .datos-portada { gap: 22px; flex-wrap: wrap; } .datos-portada b { font-size: 22px; } .vivo { display: none; } }
-  @media (max-width: 700px) { .titular { top: 57%; font-size: 12.5vw; } .titular .linea { display: block; } .portada::after { height: 55%; } }
+  /* Celular: la foto ocupa la parte de arriba y el título y la presentación van debajo, en orden, sin montarse */
+  @media (max-width: 700px) {
+    .portada { height: auto; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 58svh 0 26px; }
+    .portada::after { height: 62%; background: linear-gradient(to top, rgba(7, 10, 28, .92) 40%, transparent); }
+    .portada .foto { object-position: 50% 12%; }
+    .titular { position: relative; inset: auto; transform: none; margin: 0 var(--borde); text-align: left; font-size: min(11.2vw, 60px); line-height: .92; }
+    .titular .linea { display: block; }
+    .pie-portada { position: relative; inset: auto; margin: 22px var(--borde) 0; }
+  }
 
   /* ---------- Menú flotante (aparece al salir de la portada) ---------- */
   .menu { position: fixed; z-index: 50; left: 50%; bottom: 18px; transform: translate(-50%, 140%); opacity: 0; width: max-content; display: flex; align-items: center; gap: 2px; padding: 5px; border-radius: 16px;
@@ -252,7 +261,7 @@
   }
 
   /* ---------- Proyectos: tarjetas que se apilan ---------- */
-  .titulo-grande { font-size: clamp(64px, 12vw, 200px); font-weight: 600; letter-spacing: -.05em; line-height: .86; text-transform: uppercase; }
+  .titulo-grande { font-size: clamp(44px, 12vw, 200px); font-weight: 600; letter-spacing: -.05em; line-height: .86; text-transform: uppercase; }
   .titulo-grande .punto { color: var(--coral); }
   .pila { margin-top: clamp(50px, 7vw, 100px); }
   .tarjeta { --p: 0; position: relative; margin-bottom: 7vh; padding: clamp(22px, 3.4vw, 50px); border-radius: 22px; overflow: hidden;
@@ -296,6 +305,9 @@
   .tarjeta .marco:hover::after { opacity: 1; }
   @media (max-width: 860px) {
     .tarjeta { margin-bottom: 4vh; }
+    .tarjeta h3 { font-size: min(9.5vw, 56px); }
+    .tarjeta .num-p { font-size: min(7vw, 40px); }
+    .cifra { flex-direction: column; gap: 6px; }
     .tarjeta .cuerpo { grid-template-columns: 1fr; gap: 20px; }
     .tarjeta .marco { order: -1; }
     .tarjeta .resumen { font-size: 14.5px; }
@@ -341,7 +353,7 @@
   /* ---------- Contacto y pie ---------- */
   .contacto { padding: clamp(110px, 13vw, 180px) 0 0; border-top: 1px solid var(--linea); }
   .contacto .rejilla { display: grid; grid-template-columns: 1fr auto; gap: clamp(30px, 5vw, 80px); align-items: end; }
-  .contacto .grande { font-size: clamp(56px, 10vw, 168px); font-weight: 600; letter-spacing: -.05em; line-height: .88; }
+  .contacto .grande { font-size: clamp(38px, 10vw, 168px); font-weight: 600; letter-spacing: -.05em; line-height: .88; }
   .contacto .grande span { color: var(--coral); }
   .contacto p { margin-top: 34px; color: var(--suave); max-width: 460px; font-size: 17px; }
   .contacto .acciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
@@ -358,7 +370,7 @@
   .pie nav a { display: block; font-size: 18px; padding: 3px 0; color: var(--suave); transition: color .2s; }
   .pie nav a:hover { color: var(--texto); }
   .pie .base { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-family: var(--mono); font-size: 11.5px; color: var(--tenue); text-transform: uppercase; letter-spacing: .06em; }
-  @media (max-width: 760px) { .contacto .rejilla { grid-template-columns: 1fr; } .contacto .retrato { width: min(70vw, 300px); } .pie { grid-template-columns: 1fr 1fr; } .pie .marca { grid-column: 1 / -1; } }
+  @media (max-width: 760px) { .contacto .rejilla { grid-template-columns: 1fr; } .contacto .rejilla > * { min-width: 0; } .contacto .retrato { width: min(70vw, 300px); } .pie { grid-template-columns: 1fr 1fr; } .pie .marca { grid-column: 1 / -1; } }
 
   /* ---------- Detalles ---------- */
   .progreso { position: fixed; z-index: 60; top: 0; left: 0; right: 0; height: 2px; background: var(--coral); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
